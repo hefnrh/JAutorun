@@ -21,5 +21,12 @@
             <version>3.8.1</version>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>jregistry</groupId>
+            <artifactId>jregistry</artifactId>
+            <version>1.8.1</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/lib/jregistry-1.8.1.jar</systemPath>
+        </dependency>
     </dependencies>
 </project>
