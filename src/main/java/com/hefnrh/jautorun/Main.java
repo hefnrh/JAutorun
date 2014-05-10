@@ -21,7 +21,9 @@ public class Main {
 //        printServices();
 //        printIEBHO();
 //        printTaskScheduler();
-        printDrivers();
+//        printDrivers();
+//        printBootExecute();
+        printDLLs();
     }
 
     public static void printLogon() {
@@ -264,6 +266,24 @@ public class Main {
                 e.printStackTrace();
             }
         }
+    }
+
+    static void printBootExecute() {
+        printKeyValue(RegistryKey.HKEY_LOCAL_MACHINE_INDEX,
+                "System\\CurrentControlSet\\Control\\Session Manager\\BootExecute",
+                "HKLM\\System\\CurrentControlSet\\Control\\Session Manager\\BootExecute\t\t\t");
+    }
+
+    static void printDLLs() {
+        printKeyValue(RegistryKey.HKEY_LOCAL_MACHINE_INDEX,
+                "System\\CurrentControlSet\\Control\\Session Manager\\KnownDlls",
+                "HKLM\\System\\CurrentControlSet\\Control\\Session Manager\\KnownDlls\t\t\t");
+    }
+
+    static void printWinsockProviders() {
+        printKeyValue(RegistryKey.HKEY_LOCAL_MACHINE_INDEX,
+                "System\\CurrentControlSet\\Services\\WinSock2\\Parameters\\Protocol_Catalog9",
+                "HKLM\\System\\CurrentControlSet\\Services\\WinSock2\\Parameters\\Protocol_Catalog9\t\t\t");
     }
 
     static void printKeyValue(int index, String subkey, String path) {
