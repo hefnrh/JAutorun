@@ -29,16 +29,18 @@
             <systemPath>${project.basedir}/lib/jregistry-1.8.1.jar</systemPath>
         </dependency>
         <dependency>
-            <groupId>jregistrydll</groupId>
-            <artifactId>jregistry</artifactId>
+            <groupId>jregistry</groupId>
+            <artifactId>reg</artifactId>
             <version>1.8.1</version>
+            <type>dll</type>
             <scope>system</scope>
             <systemPath>${project.basedir}/lib/reg.dll</systemPath>
         </dependency>
         <dependency>
-            <groupId>jregistrydllx64</groupId>
-            <artifactId>jregistry</artifactId>
+            <groupId>jregistry</groupId>
+            <artifactId>reg_x64</artifactId>
             <version>1.8.1</version>
+            <type>dll</type>
             <scope>system</scope>
             <systemPath>${project.basedir}/lib/reg_x64.dll</systemPath>
         </dependency>
@@ -67,9 +69,6 @@
                             <Class-Path>lib/jregistry-1.8.1.jar lib/reg.dll lib/reg_x64.dll</Class-Path>
                         </manifestEntries>
                     </archive>
-                    <excludes>
-                        <exclude>${project.basedir}/lib/*</exclude>
-                    </excludes>
                 </configuration>
             </plugin>
             <plugin>
@@ -86,24 +85,10 @@
                             <outputDirectory>
                                 ${project.build.directory}/lib
                             </outputDirectory>
+                            <includeScope>system</includeScope>
                         </configuration>
                     </execution>
                 </executions>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-shade-plugin</artifactId>
-                <executions>
-                    <execution>
-                        <phase>package</phase>
-                        <goals>
-                            <goal>shade</goal>
-                        </goals>
-                    </execution>
-                </executions>
-                <configuration>
-                    <finalName>uber-${artifactId}-${version}</finalName>
-                </configuration>
             </plugin>
         </plugins>
     </build>
