@@ -243,11 +243,11 @@ public class Main {
     }
 
     static void printIEBHO() {
-        printDefaultSubkeyValue(RegistryKey.HKEY_LOCAL_MACHINE_INDEX,
+        printSubkeyAllValues(RegistryKey.HKEY_LOCAL_MACHINE_INDEX,
                 "Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\Browser Helper Objects",
                 "HKLM\\Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\Browser Helper Objects\t\t\t");
 
-        printDefaultSubkeyValue(RegistryKey.HKEY_LOCAL_MACHINE_INDEX,
+        printSubkeyAllValues(RegistryKey.HKEY_LOCAL_MACHINE_INDEX,
                 "Software\\Wow6432Node\\Microsoft\\Windows\\CurrentVersion\\Explorer\\Browser Helper Objects",
                 "HKLM\\Software\\Wow6432Node\\Microsoft\\Windows\\CurrentVersion\\Explorer\\Browser Helper Objects\t\t\t");
 
