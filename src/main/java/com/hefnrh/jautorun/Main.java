@@ -306,10 +306,26 @@ public class Main {
             if (vStart == null || vType == null) {
                 continue;
             }
-            byte[] data = vType.getByteData();
             // start type && service type check
-            if (vStart.getByteData()[0] == 0x02 && (data[0] == 0x10 || data[0] == 0x20)) {
-                System.out.println("\t" + k.getName() + "\t" + k.getValue("ImagePath"));
+            if (vStart.getByteData()[0] == 0x02) {
+//                if (vType.getByteData()[0] == 0x10) {
+//                    System.out.println("\t" + k.getName() + "\t" + k.getValue("ImagePath"));
+//                } else if (vType.getByteData()[0] == 0x20) {
+//                    k = k.getSubKey("Parameters");
+//                    if (k != null) {
+//                        System.out.println("\t" + k.getParent().getName() + "\t" + k.getValue("ServiceDll"));
+//                    }
+//                }
+
+                if (vType.getByteData()[0] == 0x10 || vType.getByteData()[0] == 0x20) {
+                    if (k.getSubKey("Parameters") != null && k.getSubKey("Parameters").getValue("ServiceDll") != null) {
+                        System.out.println("\t" + k.getName() + "\t" + k.getSubKey("Parameters").getValue("ServiceDll"));
+                    } else if (k.getValue("ServiceDll") != null) {
+                        System.out.println("\t" + k.getName() + "\t" + k.getValue("ServiceDll"));
+                    } else {
+                        System.out.println("\t" + k.getName() + "\t" + k.getValue("ImagePath"));
+                    }
+                }
             }
         }
     }
@@ -320,12 +336,13 @@ public class Main {
         System.out.println("HKLM\\System\\CurrentControlSet\\Services\t\t\t");
         for (RegistryKey k : key.getSubKeys()) {
             RegistryValue vType = k.getValue("type");
+            RegistryValue vStart = k.getValue("start");
             if (vType == null) {
                 continue;
             }
             byte[] data = vType.getByteData();
             // service type check
-            if ((data[0] == 0x01) && k.getValue("ImagePath") != null) {
+            if ((data[0] == 1 || data[0] == 2) && k.getValue("ImagePath") != null && vStart.getByteData()[0] != 4) {
                 System.out.println("\t" + k.getName() + "\t" + k.getValue("ImagePath"));
             }
         }
